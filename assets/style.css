@@ -1,0 +1,36 @@
+ * {
+    /* background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(148, 148, 148)); */
+    /* height: 100%;
+    width: 100%; */
+    /* margin: 0px;
+    padding: 0px;
+    color: white */ */
+}
+
+body {
+    display:flex;
+    background: transparent;  
+    text-align: center;
+    justify-content: center;
+}
+
+
+.quizWindow {
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    width: 75%;
+    padding: 10%;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 250%;
+}
+
+.start {
+    width:33%;
+    margin-left: auto;
+    margin-right: auto;;
+}
