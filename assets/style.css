@@ -1,10 +1,5 @@
  * {
-    /* background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(148, 148, 148)); */
-    /* height: 100%;
-    width: 100%; */
-    /* margin: 0px;
-    padding: 0px;
-    color: white */ */
+     
 }
 
 body {
@@ -32,5 +27,13 @@ h1 {
 .start {
     width:33%;
     margin-left: auto;
-    margin-right: auto;;
+    margin-right: auto;
+}
+
+.choiceA {
+    width:33%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
 }
