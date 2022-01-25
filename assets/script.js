@@ -16,6 +16,7 @@ var questionArray = [{
     choiceTwo: "B. Bootstrap",
     choiceThree: "C. JavaScript",
     choiceFour: "D. MySQL",
+    answer: "B. Bootstrap",
 
 }, {
     question: "question 2?",
@@ -67,9 +68,14 @@ startButton.addEventListener("click", function(event){
     choiceD.textContent = questionArray[questionIndex].choiceFour;
     //moves on to next questions and tallies correct or incorrect answers.
 
-    var answerClick = document.querySelector(".answer")
-    answerClick.addEventListener("click", function(event){
+    var answerClick = document.querySelectorAll(".answer")
+    for (var i=0; i<answerClick.length; i++) {
+        answerClick[i].addEventListener("click", function(event){
         console.log("you have clicked an answer")
-    })
+        })
+
+    }
+    
+    
 
 })
