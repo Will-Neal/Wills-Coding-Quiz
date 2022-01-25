@@ -37,3 +37,19 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+.quizWindow {
+    justify-content: left;
+}
+
+#quizQuestions {
+    padding: 30px;
+    font-weight: bold;
+    font-size: 200%;
+}
+
+.answer {
+    background-color:blue;
+    color: cornsilk;
+    margin: auto;
+}
