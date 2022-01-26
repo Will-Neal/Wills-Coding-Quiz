@@ -68,6 +68,8 @@ var timer = document.createElement("div")
 
 var numCorrect = 0
 var numIncorrect = 0
+var score = numCorrect * 20
+
 //START THE GAME
 startButton.addEventListener("click", function(event){
     console.log("you clicked the button");
@@ -124,7 +126,21 @@ startButton.addEventListener("click", function(event){
             question.appendChild(highScore);
             highScore.setAttribute("type","text");
             question.appendChild(submit);
-            submit.textContent = "Submit"
+            submit.textContent = "Submit";
+            submit.setAttribute("id", "submitButton");
+            var subBtn = document.querySelector("#submitButton");
+            subBtn.addEventListener('click', function(){
+                var userInit = document.querySelector("input").value;
+                console.log(userInit);
+                // console.log("you clicked submit");
+                score = numCorrect * 20;
+                console.log(score);
+                saveObj = {
+                    points: score,
+                    name: userInit
+                }
+                localStorage.setItem('userScore', JSON.stringify(saveObj));
+            });
 
         } else {
             console.log("GameOver");
@@ -139,6 +155,20 @@ startButton.addEventListener("click", function(event){
             highScore.setAttribute("type", "text");
             question.appendChild(submit);
             submit.textContent = "Submit";
+            submit.setAttribute("id", "submitButton");
+            var subBtn = document.querySelector("#submitButton");
+            subBtn.addEventListener('click', function(){
+                var userInit = document.querySelector("input").value;
+                console.log(userInit);
+                // console.log.apply("You Clicked Submit");
+                score = numCorrect * 20;
+                console.log(score);
+                saveObj = {
+                    points: score,
+                    name: userInit
+                }
+                localStorage.setItem('userScore', JSON.stringify(saveObj));
+            });
         }
         })
         }
