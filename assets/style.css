@@ -2,6 +2,11 @@
      
 }
 
+a {
+    position: absolute;
+    font-size: 150%;
+}
+
 body {
     display:flex;
     background: transparent;  
@@ -16,6 +21,22 @@ body {
     height: 75%;
     width: 75%;
     padding: 10%;
+}
+
+.scoreContainer {
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    width: 75%;
+    padding: 10%;
+}
+
+#scoreBoard {
+    background-color: lightgrey;
+    width: 400px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
