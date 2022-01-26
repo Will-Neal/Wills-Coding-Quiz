@@ -102,7 +102,7 @@ startButton.addEventListener("click", function(event){
     choiceD.setAttribute("id", "choiceD");
     choiceD.textContent = questionArray[questionIndex].choiceFour;
     //moves on to next questions and tallies correct or incorrect answers.
-    var answerClick = document.querySelectorAll(".answer")
+    var answerClick = document.querySelectorAll(".answer");
     //For loop that adds event listener 
     for (var i=0; i<answerClick.length; i++) {
         answerClick[i].addEventListener("click", function(event){
@@ -110,14 +110,14 @@ startButton.addEventListener("click", function(event){
         console.log(event.target.innerHTML)    
         if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex < 4) {
             ++numCorrect;
-            questionIndex++;
+            ++questionIndex;
             timeLeft = timeLeft + 5;
             console.log("the question index is " + questionIndex)
             console.log("number correct is " + numCorrect)
             nextQuestion()
         }  else if (event.target.innerHTML != questionArray[questionIndex].answer && questionIndex < 4){
             ++numIncorrect;
-            questionIndex++;
+            ++questionIndex;
             timeLeft = timeLeft - 10; 
             console.log("I Clicked a wrong number and the index is " + questionIndex)
             console.log("the number incorrect is " + numIncorrect)
@@ -125,61 +125,13 @@ startButton.addEventListener("click", function(event){
         } else if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex == 4) {
            numCorrect = numCorrect + 1;
             console.log("GameOver");
-            removeAllChildNodes(quizChange);
-            quizChange.appendChild(question);
-            question.textContent = "Game Over";
-            question.appendChild(showScore);
-            showScore.textContent = "Your score was " + (numCorrect  * 20);
-            showScore.appendChild(initials)
-            initials.textContent = "Enter your initials"
-            question.appendChild(highScore);
-            highScore.setAttribute("type","text");
-            question.appendChild(submit);
-            submit.textContent = "Submit";
-            submit.setAttribute("id", "submitButton");
-            var subBtn = document.querySelector("#submitButton");
-            subBtn.addEventListener('click', function(){
-                var userInit = document.querySelector("input").value;
-                console.log(userInit);
-                // console.log("you clicked submit");
-                score = numCorrect * 20;
-                console.log(score);
-                saveObj = {
-                    points: score,
-                    name: userInit
-                }
-                localStorage.setItem('userScore', JSON.stringify(saveObj));
-                location.href = "assets/highScorePage.html";
-            });
+            gameOver()
+            
 
         } else {
             console.log("GameOver");
-            removeAllChildNodes(quizChange);
-            quizChange.appendChild(question);
-            question.textContent = "Game Over";
-            question.appendChild(showScore);
-            showScore.textContent = "Your score was " + (numCorrect  * 20);
-            showScore.appendChild(initials)
-            initials.textContent = "Enter your initials"
-            question.appendChild(highScore);
-            highScore.setAttribute("type", "text");
-            question.appendChild(submit);
-            submit.textContent = "Submit";
-            submit.setAttribute("id", "submitButton");
-            var subBtn = document.querySelector("#submitButton");
-            subBtn.addEventListener('click', function(){
-                var userInit = document.querySelector("input").value;
-                console.log(userInit);
-                // console.log.apply("You Clicked Submit");
-                score = numCorrect * 20;
-                console.log(score);
-                saveObj = {
-                    points: score,
-                    name: userInit
-                }
-                localStorage.setItem('userScore', JSON.stringify(saveObj));
-                location.href = "assets/highScorePage.html";
-            });
+            gameOver()
+            
         }
         })
         }
@@ -208,13 +160,44 @@ function countdown() {
   //var timeLeft = 30;
   var timeInterval = setInterval(function () {
   timer.textContent = "Time Remaining: " + timeLeft + " Second(s)"
+  console.log(timeLeft);
   
     timeLeft--;
-    if (timeLeft === 0) {
+    if (timeLeft <= -1) {
       clearInterval(timeInterval)
-      timerEl.textContent = ""
-      
+      timer.textContent = "Time Remaining: " + 0 + " Second(s)"
+      gameOver()
     }
     
   }, 1000);
+}
+
+function gameOver() {
+    timeLeft = 0
+    removeAllChildNodes(quizChange);
+    quizChange.appendChild(question);
+    question.textContent = "Game Over";
+    question.appendChild(showScore);
+    showScore.textContent = "Your score was " + (numCorrect  * 20);
+    showScore.appendChild(initials)
+    initials.textContent = "Enter your initials"
+    question.appendChild(highScore);
+    highScore.setAttribute("type", "text");
+    question.appendChild(submit);
+    submit.textContent = "Submit";
+    submit.setAttribute("id", "submitButton");
+    var subBtn = document.querySelector("#submitButton");
+    subBtn.addEventListener('click', function(){
+        var userInit = document.querySelector("input").value;
+        console.log(userInit);
+        // console.log.apply("You Clicked Submit");
+        score = numCorrect * 20;
+        console.log(score);
+        saveObj = {
+            points: score,
+            name: userInit
+            }
+            localStorage.setItem('userScore', JSON.stringify(saveObj));
+            location.href = "assets/highScorePage.html";
+            });
 }
