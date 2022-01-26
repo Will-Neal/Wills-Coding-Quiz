@@ -8,6 +8,7 @@ function removeAllChildNodes(parent) {
     }
 }
 
+
 var questionIndex = 0
 
 var questionArray = [{
@@ -63,19 +64,25 @@ var choiceA = document.createElement("button")
 var choiceB = document.createElement("button")
 var choiceC = document.createElement("button")
 var choiceD = document.createElement("button")
-var timer = document.createElement("div")
+var timer = document.querySelector(".timer")
+
+var scoreListEl = document.querySelector(".scoreList");
+var listEl = document.createElement("li");
 
 
 var numCorrect = 0
 var numIncorrect = 0
 var score = numCorrect * 20
+var timeLeft = 30
 
+//writeHighScores()
 //START THE GAME
 startButton.addEventListener("click", function(event){
     console.log("you clicked the button");
     //This brings up the first question of the quiz
     removeAllChildNodes(quizChange);
-    quizChange.appendChild(question)
+    countdown();
+    quizChange.appendChild(question);
     question.setAttribute("id", "quizQuestions")
     question.textContent = questionArray[questionIndex].question;
     quizChange.appendChild(choiceA);
@@ -102,14 +109,16 @@ startButton.addEventListener("click", function(event){
         console.log("you have clicked an answer")
         console.log(event.target.innerHTML)    
         if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex < 4) {
-            numCorrect = numCorrect + 1;
-            questionIndex = questionIndex + 1;
+            ++numCorrect;
+            questionIndex++;
+            timeLeft = timeLeft + 5;
             console.log("the question index is " + questionIndex)
             console.log("number correct is " + numCorrect)
             nextQuestion()
         }  else if (event.target.innerHTML != questionArray[questionIndex].answer && questionIndex < 4){
-            numIncorrect = numIncorrect + 1;
-            questionIndex = questionIndex + 1; 
+            ++numIncorrect;
+            questionIndex++;
+            timeLeft = timeLeft - 10; 
             console.log("I Clicked a wrong number and the index is " + questionIndex)
             console.log("the number incorrect is " + numIncorrect)
             nextQuestion()
@@ -140,6 +149,7 @@ startButton.addEventListener("click", function(event){
                     name: userInit
                 }
                 localStorage.setItem('userScore', JSON.stringify(saveObj));
+                location.href = "assets/highScorePage.html";
             });
 
         } else {
@@ -168,6 +178,7 @@ startButton.addEventListener("click", function(event){
                     name: userInit
                 }
                 localStorage.setItem('userScore', JSON.stringify(saveObj));
+                location.href = "assets/highScorePage.html";
             });
         }
         })
@@ -184,3 +195,26 @@ function nextQuestion() {
     choiceD.textContent = questionArray[questionIndex].choiceFour;
 }
 
+function writeHighScores() {
+    listEl.appendChild(document.createTextNode("HI!"))
+    scoreListEl.appendChild(listEl);
+}
+
+function timer() {
+
+}
+
+function countdown() {
+  //var timeLeft = 30;
+  var timeInterval = setInterval(function () {
+  timer.textContent = "Time Remaining: " + timeLeft + " Second(s)"
+  
+    timeLeft--;
+    if (timeLeft === 0) {
+      clearInterval(timeInterval)
+      timerEl.textContent = ""
+      
+    }
+    
+  }, 1000);
+}
