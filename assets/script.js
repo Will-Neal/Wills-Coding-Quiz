@@ -204,8 +204,9 @@ var listEl = document.createElement("li");
 
 
 function writeHighScores() {
+    if(scoreListEl) {
     listEl.appendChild(document.createTextNode("HI"))
-    scoreListEl.appendChild(listEl);
+    scoreListEl.appendChild(listEl);}
 }
 
 writeHighScores()
