@@ -66,8 +66,7 @@ var choiceC = document.createElement("button")
 var choiceD = document.createElement("button")
 var timer = document.querySelector(".timer")
 
-var scoreListEl = document.querySelector(".scoreList");
-var listEl = document.createElement("li");
+
 
 
 var numCorrect = 0
@@ -77,6 +76,7 @@ var timeLeft = 30
 
 //writeHighScores()
 //START THE GAME
+if(startButton) {
 startButton.addEventListener("click", function(event){
     console.log("you clicked the button");
     //This brings up the first question of the quiz
@@ -136,7 +136,7 @@ startButton.addEventListener("click", function(event){
         })
         }
 
-})
+})}
 
 //function to refresh question and answer choices
 function nextQuestion() {
@@ -147,10 +147,7 @@ function nextQuestion() {
     choiceD.textContent = questionArray[questionIndex].choiceFour;
 }
 
-function writeHighScores() {
-    listEl.appendChild(document.createTextNode("HI!"))
-    scoreListEl.appendChild(listEl);
-}
+
 
 function timer() {
 
@@ -201,3 +198,14 @@ function gameOver() {
             location.href = "assets/highScorePage.html";
             });
 }
+
+var scoreListEl = document.querySelector(".scoreList");
+var listEl = document.createElement("li");
+
+
+function writeHighScores() {
+    listEl.appendChild(document.createTextNode("HI"))
+    scoreListEl.appendChild(listEl);
+}
+
+writeHighScores()
