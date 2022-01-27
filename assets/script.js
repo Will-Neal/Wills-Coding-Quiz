@@ -1,4 +1,4 @@
-console.log("If you're reading this I am linked")
+// console.log("If you're reading this I am linked")
 //Questions 
 
 //function to remove all child nodes of a parent element
@@ -75,11 +75,11 @@ var score = numCorrect * 20
 var timeLeft = 30
 var nameArray = []
 var scoreArray = []
-//writeHighScores()
+
 //START THE GAME
 if(startButton) {
 startButton.addEventListener("click", function(event){
-    console.log("you clicked the button");
+    // console.log("you clicked the button");
     //This brings up the first question of the quiz
     removeAllChildNodes(quizChange);
     countdown();
@@ -107,14 +107,14 @@ startButton.addEventListener("click", function(event){
     //For loop that adds event listener 
     for (var i=0; i<answerClick.length; i++) {
         answerClick[i].addEventListener("click", function(event){
-        console.log("you have clicked an answer")
-        console.log(event.target.innerHTML)    
+        // console.log("you have clicked an answer")
+        // console.log(event.target.innerHTML)    
         if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex < 4) {
             ++numCorrect;
             ++questionIndex;
             timeLeft = timeLeft + 5;
-            console.log("the question index is " + questionIndex)
-            console.log("number correct is " + numCorrect)
+            // console.log("the question index is " + questionIndex)
+            // console.log("number correct is " + numCorrect)
             quizChange.appendChild(feedback)
             feedback.setAttribute("class", "feedback")
             feedback.textContent = "Correct! +5s"
@@ -123,20 +123,20 @@ startButton.addEventListener("click", function(event){
             ++numIncorrect;
             ++questionIndex;
             timeLeft = timeLeft - 10; 
-            console.log("I Clicked a wrong number and the index is " + questionIndex)
-            console.log("the number incorrect is " + numIncorrect)
+            // console.log("I Clicked a wrong number and the index is " + questionIndex)
+            // console.log("the number incorrect is " + numIncorrect)
             quizChange.appendChild(feedback)
             feedback.setAttribute("class", "feedback")
             feedback.textContent = "Incorrect -10s"
             nextQuestion()
         } else if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex == 4) {
            numCorrect = numCorrect + 1;
-            console.log("GameOver");
+            // console.log("GameOver");
             gameOver()
             
 
         } else {
-            console.log("GameOver");
+            // console.log("GameOver");
             gameOver()
             
         }
@@ -163,7 +163,7 @@ function countdown() {
   //var timeLeft = 30;
   var timeInterval = setInterval(function () {
   timer.textContent = "Time Remaining: " + timeLeft + " Second(s)"
-  console.log(timeLeft);
+//   console.log(timeLeft);
   
     timeLeft--;
     if (timeLeft <= -1) {
@@ -213,13 +213,13 @@ if (clearButton) {
         localStorage.clear()
         document.location.reload()
         // listErase = document.querySelectorAll("ol")
-        console.log(listErase)
-        console.log('youre hitting the button')
+        // console.log(listErase)
+        // console.log('youre hitting the button')
     })
 }
 //Writes the highscores to the HighScorePage.html page
 function writeHighScores() {
-    console.log("write highscores ran")
+    // console.log("write highscores ran")
     var scoreListEl = document.querySelector(".scoreList");
     var listEl = document.createElement("li");
     var nameRetrieve = localStorage.getItem('name')
