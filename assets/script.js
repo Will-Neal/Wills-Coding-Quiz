@@ -196,23 +196,34 @@ function gameOver() {
         localStorage.setItem('score', score);
 
         location.href = "assets/highScorePage.html";
-            });
+            })
 }
 
 
-
+clearButton = document.querySelector("#clearButton") 
+if (clearButton) {
+    clearButton.addEventListener("click", function(event) {
+        localStorage.clear()
+        document.location.reload()
+        // listErase = document.querySelectorAll("ol")
+        console.log(listErase)
+        console.log('youre hitting the button')
+    })
+}
 //Writes the highscores to the HighScorePage.html page
 function writeHighScores() {
+    console.log("write highscores ran")
     var scoreListEl = document.querySelector(".scoreList");
     var listEl = document.createElement("li");
     var nameRetrieve = localStorage.getItem('name')
-    var nameCapital = nameRetrieve.toUpperCase()
     var scoreRetrieve = localStorage.getItem('score')
+    if(nameRetrieve){
     if(scoreListEl) {
-    listEl.appendChild(document.createTextNode(nameCapital + "  -  " + scoreRetrieve))
+    listEl.appendChild(document.createTextNode(nameRetrieve + "  -  " + scoreRetrieve))
     scoreListEl.appendChild(listEl);
-}
+}}
     
 }
 
 writeHighScores()
+
