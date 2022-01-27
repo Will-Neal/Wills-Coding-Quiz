@@ -73,8 +73,7 @@ var numCorrect = 0
 var numIncorrect = 0
 var score = numCorrect * 20
 var timeLeft = 30
-var nameArray = []
-var scoreArray = []
+
 
 //START THE GAME
 if(startButton) {
@@ -195,13 +194,18 @@ function gameOver() {
     subBtn.addEventListener('click', function(){
         var userName = document.querySelector("input").value;
         var score = numCorrect * 20;
-        nameArray.push(userName)
-        scoreArray.push(score)
-        // var saveObj = {score, userInit}
+        // nameArray.push(userName)
+        // scoreArray.push(score)
+        addNewUser(score, userName)
+        // saveArray = []
+        // var saveObj = {
+        //     score : score,
+        //     username : userName}
         // saveArray.push(saveObj)
-        localStorage.setItem('name', userName);
-        localStorage.setItem('score', score);
-
+        // localStorage.setItem("userData", JSON.stringify(saveArray))
+        // localStorage.setItem('name', userName);
+        // localStorage.setItem('score', score);
+        
         location.href = "assets/highScorePage.html";
             })
 }
@@ -221,16 +225,41 @@ if (clearButton) {
 function writeHighScores() {
     // console.log("write highscores ran")
     var scoreListEl = document.querySelector(".scoreList");
-    var listEl = document.createElement("li");
-    var nameRetrieve = localStorage.getItem('name')
-    var scoreRetrieve = localStorage.getItem('score')
-    if(nameRetrieve){
-    if(scoreListEl) {
-    listEl.appendChild(document.createTextNode(nameRetrieve + "  -  " + scoreRetrieve))
-    scoreListEl.appendChild(listEl);
-}}
     
-}
+    var storedData = localStorage.getItem("userData")
+    var parsed = JSON.parse((storedData) || "[]")
+    if (parsed){console.log( parsed)}
+    
+    for (var i=0; i<parsed.length ; i+=2){
+    var listEl = document.createElement("li");
+    var user = parsed[i].username
+    console.log(parsed.length)
+    var score = parsed[i].score
+    console.log(score)
+  
+    if(scoreListEl){
+    listEl.appendChild(document.createTextNode((i/2+1) + " - " + user + " - " + score))
+    scoreListEl.appendChild(listEl);
+    console.log("i am a cycle")}}}
+
 
 writeHighScores()
 
+
+//Function that creates an array and stores it in local storage
+function addNewUser(scr, usr) {
+  var saveArray = [];
+
+  var userData = {
+    score: scr,
+    username: usr,
+  };
+ saveArray.push(userData);
+saveArray = saveArray.concat(JSON.parse(localStorage.getItem('userData')||'[]'));
+  console.log("userData" + userData)
+  console.log("saveArray" + saveArray)
+
+
+  localStorage.setItem("userData", JSON.stringify(saveArray));
+  console.log(localStorage.setItem("userData", JSON.stringify(saveArray)))
+};
