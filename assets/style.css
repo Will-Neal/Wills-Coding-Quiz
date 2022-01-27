@@ -34,15 +34,16 @@ body {
 .scoreContainer {
     display: flex;
     flex-direction: column;
-    height: 75%;
+    height: 25%;
     width: 75%;
     padding: 10%;
 }
 
 #scoreBoard {
-    background-color: lightgrey;
-    width: 400px;
-    height: 200px;
+    background-color: blue;
+    color: white;
+    width: 300px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
 }
@@ -85,4 +86,9 @@ h1 {
     background-color:blue;
     color: cornsilk;
     margin: auto;
+}
+
+li {
+    font-weight: bold;
+    text-align: left;
 }

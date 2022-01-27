@@ -73,7 +73,8 @@ var numCorrect = 0
 var numIncorrect = 0
 var score = numCorrect * 20
 var timeLeft = 30
-
+var nameArray = []
+var scoreArray = []
 //writeHighScores()
 //START THE GAME
 if(startButton) {
@@ -149,10 +150,8 @@ function nextQuestion() {
 
 
 
-function timer() {
 
-}
-
+//Controls the timer countdown
 function countdown() {
   //var timeLeft = 30;
   var timeInterval = setInterval(function () {
@@ -168,6 +167,8 @@ function countdown() {
     
   }, 1000);
 }
+
+//Function to be launched when out of questions or when the timer runs out
 
 function gameOver() {
     timeLeft = 0
@@ -185,28 +186,33 @@ function gameOver() {
     submit.setAttribute("id", "submitButton");
     var subBtn = document.querySelector("#submitButton");
     subBtn.addEventListener('click', function(){
-        var userInit = document.querySelector("input").value;
-        console.log(userInit);
-        // console.log.apply("You Clicked Submit");
-        score = numCorrect * 20;
-        console.log(score);
-        saveObj = {
-            points: score,
-            name: userInit
-            }
-            localStorage.setItem('userScore', JSON.stringify(saveObj));
-            location.href = "assets/highScorePage.html";
+        var userName = document.querySelector("input").value;
+        var score = numCorrect * 20;
+        nameArray.push(userName)
+        scoreArray.push(score)
+        // var saveObj = {score, userInit}
+        // saveArray.push(saveObj)
+        localStorage.setItem('name', userName);
+        localStorage.setItem('score', score);
+
+        location.href = "assets/highScorePage.html";
             });
 }
 
-var scoreListEl = document.querySelector(".scoreList");
-var listEl = document.createElement("li");
 
 
+//Writes the highscores to the HighScorePage.html page
 function writeHighScores() {
+    var scoreListEl = document.querySelector(".scoreList");
+    var listEl = document.createElement("li");
+    var nameRetrieve = localStorage.getItem('name')
+    var nameCapital = nameRetrieve.toUpperCase()
+    var scoreRetrieve = localStorage.getItem('score')
     if(scoreListEl) {
-    listEl.appendChild(document.createTextNode("HI"))
-    scoreListEl.appendChild(listEl);}
+    listEl.appendChild(document.createTextNode(nameCapital + "  -  " + scoreRetrieve))
+    scoreListEl.appendChild(listEl);
+}
+    
 }
 
 writeHighScores()
