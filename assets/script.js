@@ -65,7 +65,7 @@ var choiceB = document.createElement("button")
 var choiceC = document.createElement("button")
 var choiceD = document.createElement("button")
 var timer = document.querySelector(".timer")
-
+var feedback = document.createElement("div")
 
 
 
@@ -115,6 +115,9 @@ startButton.addEventListener("click", function(event){
             timeLeft = timeLeft + 5;
             console.log("the question index is " + questionIndex)
             console.log("number correct is " + numCorrect)
+            quizChange.appendChild(feedback)
+            feedback.setAttribute("class", "feedback")
+            feedback.textContent = "Correct! +5s"
             nextQuestion()
         }  else if (event.target.innerHTML != questionArray[questionIndex].answer && questionIndex < 4){
             ++numIncorrect;
@@ -122,6 +125,9 @@ startButton.addEventListener("click", function(event){
             timeLeft = timeLeft - 10; 
             console.log("I Clicked a wrong number and the index is " + questionIndex)
             console.log("the number incorrect is " + numIncorrect)
+            quizChange.appendChild(feedback)
+            feedback.setAttribute("class", "feedback")
+            feedback.textContent = "Incorrect -10s"
             nextQuestion()
         } else if (event.target.innerHTML == questionArray[questionIndex].answer && questionIndex == 4) {
            numCorrect = numCorrect + 1;
@@ -146,6 +152,7 @@ function nextQuestion() {
     choiceB.textContent = questionArray[questionIndex].choiceTwo;
     choiceC.textContent = questionArray[questionIndex].choiceThree;
     choiceD.textContent = questionArray[questionIndex].choiceFour;
+    // feedback.textContent = ""
 }
 
 

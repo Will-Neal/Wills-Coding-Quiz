@@ -1,5 +1,5 @@
  * {
-     
+     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 a {
@@ -62,10 +62,17 @@ h1 {
     width:33%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
+    height: 30px;
 }
 
 .answer {
     padding: 10px;
+}
+
+.answer:hover{
+    background-color: rgb(0, 110, 255);
+    filter: brightness(150%);
 }
 
 .choiceA {
@@ -103,4 +110,13 @@ li {
     bottom: 0;
     margin: 30px;
     text-align: center;
+}
+
+.feedback {
+    border-top: grey solid 2px;
+    margin-top: 50px;
+    margin-left: 20%;
+    margin-right: 20%;
+    font-weight: bold;
+
 }
