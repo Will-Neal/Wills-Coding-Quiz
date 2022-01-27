@@ -110,7 +110,7 @@ li {
 #clearButton {
     width: 100px;
     bottom: 0;
-    margin: 30px;
+    /* margin: 30px; */
     text-align: center;
 }
 
